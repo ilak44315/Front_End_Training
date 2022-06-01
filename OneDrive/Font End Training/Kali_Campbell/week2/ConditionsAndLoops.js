@@ -94,11 +94,16 @@ for(let i = 10; i >=-10; i--){
 let iterator =1;
 do {
     console.log(iterator);
-    iterator==;
+    iterator++;
 } while(iterator <= 50);
 
 // edit the previous do/while loop so that it prints the remainder when the loop number is divided by 4
 
+
+do {
+    console.log(iterator % 4);
+    iterator++;
+} while(iterator <= 50);
 
 // Someone messed up the following for loop
 // fix the following infinite loop, uncomment to test
@@ -108,7 +113,9 @@ do {
     } 
 */
 
-
+for(let i = 11; i> 10; i++){
+    console.log(i);
+}
 
 
 
