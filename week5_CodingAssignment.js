@@ -1,59 +1,100 @@
-class Dealership{
-    constructor(name){
-        this.dealershipName = name;
-        this.dealershipLocation=[];
+class User{
+    constructor(name,emailAddress){
+        this.name =name;
+        this.emailAddress = emailAddress;
+
     }
-    addUser(user){
-        if(user instanceof User){
+    descripe(){
+        return `${this.name}, plays ${this.emailAddress}.`;
+    }
+}
+
+class Dealership {
+    constructor(name){
+        this.name=name;
+        this.user =[];
+    }
+
+    addUer(user){
+        if(player instanceof Player){
             this.user.push(user);
         }else {
             throw new Error(`You can only add an instance of user. Argument is not a user: ${user}`);
         }
     }
-}
-class User{
-    constructor (name, email){
-    this.userName=name;
-    this.email=email;
+    describe(){
+        return `${this.name} has ${this.user.length} users`;
     }
 }
+
 class Menu {
     constructor(){
-        this.dealerships=[];
-        this.selectedDealership= null;
+        this.dealership =[];
+        this.selectionDealership = null;
     }
     start(){
         let selection = this.showMainMenuOptions();
         while (selection != 0){
-            switch(selection){
-                case '1':
-                    this.createDealership();
-                    break;
+            switch (selection){
+                case '1': 
+                this.createDealership();
+                break;
                 case '2':
                     this.viewDealership();
-                    break;
+                break;
                 case '3':
                     this.deleteDealership();
-                    break;
+                break;
+                case '4':
+                    this.displayDealerships();
+                break;
                 default:
                     selection = 0;
+
             }
-            selection = this.showMenuOptions();
+        selection= this.showMainMenuOptions();
         }
+
         alert('Goodbye');
     }
+showMainMenuOptions(){
+    return prompt(`
+    0) exit
+    1) create new dealership
+    2) view dealership
+    3) delete dealership
+    4) display all dealerships
+    `);
 }
-createDealership();{
-    let name= prompt('Enter dealership name:');
+showTeamMenuOptions(teamInfo){
+    return prompt(`
+    0) back
+    1) create user
+    2) delete user
+    ---------------------
+    ${dealershipInfo}
+    `)
+}
+displayDealerships(){
+    let dealershipString ='';
+    for(let i =0; i< this.teams.length;i++){
+        dealershipString += i+ ')' + this.dealership[i].name + '/n';
+    }
+    return prompt (dealershipString);
+    }
+
+createDealership(){
+    let name = prompt ('Enter name for new dealership:');
     this.dealership.push(new Dealership(name));
-}
-viewDealership();{
-    let index= prompt('Enter index of dealership you want to view');
-    if(index >-1 && index < this.dealership.length){
-        this.selectedDealership =this.dealership[index];
-        let description = `Team Name: '+ this.selectedDealership.name + '\n'`;
-        for(let i=0;i<this.selectedDealership.user.length;i++);
-        description += i + ')'+this.selectedDealership.user[i].name + '-' + this.selectedDealership.user[i].email + '\n';
+    }
+viewDealership(){
+    let index = prompt('Enter the index of the dealership you wish to view:');
+    if(index >-1 && index < this.dealerships.length){
+        this.selectedDealership = this.dealership[index];
+        let description = 'Dealership Name: '+ this.selectedDealership.name + '\n';
+
+        for (let i=0;i< this.selectedDealership.user.length; i++);
+        description += i + ')'+ this.selectedDealership.user[i].name + '-' + this.selectedDealership.user[i].emailAddress + '\n';
     }
     let selection = this.showDealershipMenuOptions(description)
     switch (selection){
@@ -62,42 +103,26 @@ viewDealership();{
             break;
         case '2':
             this.deleteUser();
+        }   
     }
-}
-deleteDealership();{
-    let index = prompt ('Enter the index of the dealership you wish to delete');
-    if (index >-1 && index < this.Dealership.name.length){
-        this.dealership.splice(index,1);
-    }
-}
-createUser();{
-    let name = prompt ('Enter name of user.');
-    let email= prempt ('Enter email of user.');
-    this.selectedDealership.user.push(new User(name,email));
-}
-deleteUser();{
-    let index = prompt ('Enter index of user you would like to delete');
-    if (index >-1 && index < this.selectedDealership.user.length){
-        this.selectedDealership.user.splice(index,1);
-    }
-}
+    deleteDealership(){
+        let index = prompt('Enter the index of the dealership you wish to delete');
+        if (index > -1 && index < this.dealership.name.length){
+            this.dealerships.splice(index,1);
 
-showMainMenuOptions();{
-    prompt (`
-    0) exit
-    1) create new dealership
-    2) view dealership
-    3) delete dealership
-    `)
-}
-showDealershipMenuOptions(dealershipInfo);{
-    prompt (`
-    0) back
-    1) create user
-    2) delete user
-    -----------------
-    ${dealershipInfo}
-    `)
+        }
+    }
+    createUser(){
+        let name = prompt('Enter name for new user');
+        let emailAddress = prompt ('Enter email address for new user:');
+        this.selectedDealershio.user.push(new User(name, emailAddress));
+    }
+    deleteUser(){
+        let index = prompt('Enter the index of the user your wish to delete:');
+        if (index > -1 && index < this.selectedDealership.user.length) {
+            this.selectedDealership.user.splice(index,1);
+        }
+    }
 }
 let menu = new Menu();
 menu.start();
