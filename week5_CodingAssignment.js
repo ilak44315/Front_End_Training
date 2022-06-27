@@ -5,32 +5,32 @@ class User{
 
     }
     descripe(){
-        return `${this.name}, plays ${this.emailAddress}.`;
+        return `${this.name}, email is  ${this.emailAddress}.`;
     }
 }
 
 class Dealership {
     constructor(name){
         this.name=name;
-        this.user =[];
+        this.users =[];
     }
 
-    addUer(user){
-        if(player instanceof Player){
-            this.user.push(user);
+    addUser(user){
+        if(user instanceof User){
+            this.users.push(user);
         }else {
             throw new Error(`You can only add an instance of user. Argument is not a user: ${user}`);
         }
     }
     describe(){
-        return `${this.name} has ${this.user.length} users`;
+        return `${this.name} has ${this.users.length} users`;
     }
 }
 
 class Menu {
     constructor(){
         this.dealership =[];
-        this.selectionDealership = null;
+        this.selectedDealership = null;
     }
     start(){
         let selection = this.showMainMenuOptions();
@@ -66,7 +66,7 @@ showMainMenuOptions(){
     4) display all dealerships
     `);
 }
-showTeamMenuOptions(teamInfo){
+showDealershipMenuOptions(dealershipInfo){
     return prompt(`
     0) back
     1) create user
@@ -77,10 +77,10 @@ showTeamMenuOptions(teamInfo){
 }
 displayDealerships(){
     let dealershipString ='';
-    for(let i =0; i< this.teams.length;i++){
-        dealershipString += i+ ')' + this.dealership[i].name + '/n';
+    for(let i =0; i< this.dealership.length;i++){
+        dealershipString += i+ ')' + this.dealership[i].name + ('\n');
     }
-    return prompt (dealershipString);
+    alert(dealershipString);
     }
 
 createDealership(){
@@ -89,12 +89,12 @@ createDealership(){
     }
 viewDealership(){
     let index = prompt('Enter the index of the dealership you wish to view:');
-    if(index >-1 && index < this.dealerships.length){
+    if(index >-1 && index < this.dealership.length){
         this.selectedDealership = this.dealership[index];
-        let description = 'Dealership Name: '+ this.selectedDealership.name + '\n';
+        let description = 'Dealership Name: '+ this.selectedDealership.name + ('\n');
 
         for (let i=0;i< this.selectedDealership.user.length; i++);
-        description += i + ')'+ this.selectedDealership.user[i].name + '-' + this.selectedDealership.user[i].emailAddress + '\n';
+        description += i + ' ) '+ this.selectedDealership.user[i].name + '-' + this.selectedDealership.user[i].emailAddress + ('\n');
     }
     let selection = this.showDealershipMenuOptions(description)
     switch (selection){
@@ -108,14 +108,14 @@ viewDealership(){
     deleteDealership(){
         let index = prompt('Enter the index of the dealership you wish to delete');
         if (index > -1 && index < this.dealership.name.length){
-            this.dealerships.splice(index,1);
+            this.dealership.splice(index,1);
 
         }
     }
     createUser(){
         let name = prompt('Enter name for new user');
         let emailAddress = prompt ('Enter email address for new user:');
-        this.selectedDealershio.user.push(new User(name, emailAddress));
+        this.selectedDealership.user.push(new User(name, emailAddress));
     }
     deleteUser(){
         let index = prompt('Enter the index of the user your wish to delete:');
