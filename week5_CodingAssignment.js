@@ -96,6 +96,7 @@ viewDealership(){
         for (let i = 0; i < this.selectedDealership.users.length; i++) {
         description += i + ' ) ' + this.selectedDealership.users[i].name + ' - ' + this.selectedDealership.users[i].emailAddress + ('\n');
     }
+
     let selection = this.showDealershipMenuOptions(description);
     switch (selection){
         case '1':
@@ -105,7 +106,7 @@ viewDealership(){
             this.deleteUser();
         }   
     }
-
+}
     deleteDealership () {
         let index = prompt ('Input the index of the dealership you wish to delete: ');
         if (index > -1 && index < this.dealerships.length){
