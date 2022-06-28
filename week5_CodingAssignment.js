@@ -105,16 +105,23 @@ viewDealership(){
             this.deleteUser();
         }   
     }
-    createUser() ;{
+
+    deleteDealership () {
+        let index = prompt ('Input the index of the dealership you wish to delete: ');
+        if (index > -1 && index < this.dealerships.length){
+            this.dealerships.splice(index, 1);
+        }
+    }
+    createUser() {
         let name = prompt('Enter name for new user');
         let emailAddress = prompt ('Enter email address for new user:');
         this.selectedDealership.users.push(new User(name, emailAddress));
     }
 
-    deleteUser() ;{
+    deleteUser() {
         let index = prompt('Enter the index of the user your wish to delete:');
         if (index > -1 && index < this.selectedDealership.users.length) {
-            this.selectedDealership.users.splice(index,1);
+            this.selectedDealership.users.splice(index, 1);
         }
     }
 }
