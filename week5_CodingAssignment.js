@@ -12,7 +12,7 @@ class User{
 class Dealership {
     constructor(name){
         this.name=name;
-        this.users =[];
+        this.user =[];
     }
 
     addUser(user){
@@ -91,7 +91,7 @@ viewDealership(){
     let index = prompt('Enter the index of the dealership you wish to view:');
     if(index >-1 && index < this.dealership.length){
         this.selectedDealership = this.dealership[index];
-        let description = 'Dealership Name: '+ this.selectedDealership.name + ('\n');
+    let description = 'Dealership Name: '+ this.selectedDealership.name + ('\n');
 
         for (let i=0;i< this.selectedDealership.user.length; i++);
         description += i + ' ) '+ this.selectedDealership.user[i].name + '-' + this.selectedDealership.user[i].emailAddress + ('\n');
