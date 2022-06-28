@@ -1,18 +1,18 @@
 class User{
-    constructor(name,emailAddress){
-        this.name =name;
+    constructor(name, emailAddress){
+        this.name = name;
         this.emailAddress = emailAddress;
-
     }
+
     descripe(){
         return `${this.name}, email is  ${this.emailAddress}.`;
     }
 }
 
 class Dealership {
-    constructor(name){
-        this.name=name;
-        this.user =[];
+    constructor(name) {
+        this.name = name;
+        this.users = [];
     }
 
     addUser(user){
@@ -23,19 +23,19 @@ class Dealership {
         }
     }
     describe(){
-        return `${this.name} has ${this.users.length} users`;
+        return `${this.name} has ${this.users.length} users.`;
     }
 }
 
 class Menu {
     constructor(){
-        this.dealership =[];
+        this.dealerships =[];
         this.selectedDealership = null;
     }
     start(){
         let selection = this.showMainMenuOptions();
         while (selection != 0){
-            switch (selection){
+            switch (selection) {
                 case '1': 
                 this.createDealership();
                 break;
@@ -73,30 +73,30 @@ showDealershipMenuOptions(dealershipInfo){
     2) delete user
     ---------------------
     ${dealershipInfo}
-    `)
+    `);
 }
 displayDealerships(){
     let dealershipString ='';
-    for(let i =0; i< this.dealership.length;i++){
-        dealershipString += i+ ')' + this.dealership[i].name + ('\n');
+    for(let i = 0; i< this.dealerships.length; i++){
+        dealershipString += i + ')' + this.dealerships[i].name + ('\n');
     }
     alert(dealershipString);
-    }
+ }
 
 createDealership(){
-    let name = prompt ('Enter name for new dealership:');
-    this.dealership.push(new Dealership(name));
+    let name = prompt('Enter name for new dealership:');
+    this.dealerships.push(new Dealership(name));
     }
 viewDealership(){
     let index = prompt('Enter the index of the dealership you wish to view:');
-    if(index >-1 && index < this.dealership.length){
-        this.selectedDealership = this.dealership[index];
-    let description = 'Dealership Name: '+ this.selectedDealership.name + ('\n');
+    if(index > -1 && index < this.dealerships.length) {
+        this.selectedDealership = this.dealerships[index];
+        let description = 'Dealership Name: '+ this.selectedDealership.name + ('\n');
 
-        for (let i=0;i< this.selectedDealership.user.length; i++);
-        description += i + ' ) '+ this.selectedDealership.user[i].name + '-' + this.selectedDealership.user[i].emailAddress + ('\n');
+        for (let i = 0; i < this.selectedDealership.users.length; i++) {
+        description += i + ' ) ' + this.selectedDealership.users[i].name + ' - ' + this.selectedDealership.users[i].emailAddress + ('\n');
     }
-    let selection = this.showDealershipMenuOptions(description)
+    let selection = this.showDealershipMenuOptions(description);
     switch (selection){
         case '1':
             this.createUser();
@@ -105,24 +105,19 @@ viewDealership(){
             this.deleteUser();
         }   
     }
-    deleteDealership(){
-        let index = prompt('Enter the index of the dealership you wish to delete');
-        if (index > -1 && index < this.dealership.name.length){
-            this.dealership.splice(index,1);
-
-        }
-    }
-    createUser(){
+    createUser() ;{
         let name = prompt('Enter name for new user');
         let emailAddress = prompt ('Enter email address for new user:');
-        this.selectedDealership.user.push(new User(name, emailAddress));
+        this.selectedDealership.users.push(new User(name, emailAddress));
     }
-    deleteUser(){
+
+    deleteUser() ;{
         let index = prompt('Enter the index of the user your wish to delete:');
-        if (index > -1 && index < this.selectedDealership.user.length) {
-            this.selectedDealership.user.splice(index,1);
+        if (index > -1 && index < this.selectedDealership.users.length) {
+            this.selectedDealership.users.splice(index,1);
         }
     }
 }
+
 let menu = new Menu();
 menu.start();
